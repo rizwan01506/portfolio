@@ -22,7 +22,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="text-3xl font-bold gradient-text mb-4">
-              {'<MR />'}
+              RIZWAN.
             </div>
             <p className="text-gray-400 mb-4">
               Senior Frontend Engineer specializing in React.js, React Native, and modern web technologies.

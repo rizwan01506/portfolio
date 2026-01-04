@@ -9,7 +9,7 @@ export default function Projects() {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-            Featured Projects
+            Projects
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full"></div>
           <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -18,7 +18,7 @@ export default function Projects() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {projects.map((project: any, index) => (
             <div
               key={index}
               className="group bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
@@ -43,7 +43,7 @@ export default function Projects() {
                     Technologies:
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {project.techStack.map((tech, idx) => (
+                    {project.techStack.map((tech: any, idx: number) => (
                       <span
                         key={idx}
                         className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 text-sm rounded-full"
@@ -60,7 +60,7 @@ export default function Projects() {
                     Key Achievements:
                   </h4>
                   <ul className="space-y-2">
-                    {project.achievements.slice(0, 3).map((achievement, idx) => (
+                    {project.achievements.slice(0, 3).map((achievement: any, idx: number) => (
                       <li
                         key={idx}
                         className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300"

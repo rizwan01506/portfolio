@@ -30,20 +30,19 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
           ? 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-lg'
           : 'bg-transparent'
-      }`}
+        }`}
     >
-      <nav className="container mx-auto px-4 py-4">
+      <nav className="mx-auto max-w-6xl px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link
             href="#home"
             className="text-2xl font-bold gradient-text hover:scale-105 transition-transform"
           >
-            {'<MR />'}
+            RIZWAN.
           </Link>
 
           {/* Desktop Navigation */}
@@ -57,7 +56,7 @@ export default function Header() {
                 {link.name}
               </a>
             ))}
-            
+
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -85,7 +84,7 @@ export default function Header() {
                 <FaMoon className="text-gray-700 w-5 h-5" />
               )}
             </button>
-            
+
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700"

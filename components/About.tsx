@@ -1,5 +1,6 @@
-'use client';
+"use client";
 
+import Image from 'next/image';
 import { about } from '@/lib/data';
 import { FaCheckCircle } from 'react-icons/fa';
 
@@ -16,12 +17,22 @@ export default function About() {
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left: Image/Visual */}
-          <div className="relative">
-            <div className="aspect-square rounded-2xl bg-gradient-to-br from-purple-600 to-pink-600 p-1">
-              <div className="w-full h-full rounded-2xl bg-white dark:bg-slate-900 flex items-center justify-center">
-                <div className="text-8xl">👨‍💻</div>
+      <div className="relative">
+      <div className="aspect-[2/3] md:aspect-[4/4] rounded-2xl bg-gradient-to-br from-purple-600 to-pink-600 p-1">
+        <div className="w-full h-full rounded-2xl bg-white dark:bg-slate-900 flex items-start justify-center overflow-hidden relative shadow-lg">
+                  {/*
+                    Place your personal image at `public/me.jpg` (or update the src below).
+                    Recommended: 1024x1024 or similar square image for best results.
+                  */}
+                  <Image
+                    src="/professional_image.png"
+                    alt="Profile photo"
+                    fill
+                    className="object-cover object-top w-full h-full rounded-2xl transition-transform duration-200"
+                    priority
+                  />
+                </div>
               </div>
-            </div>
             {/* Floating Elements */}
             <div className="absolute -top-4 -right-4 w-24 h-24 bg-purple-500 rounded-full opacity-20 blur-2xl"></div>
             <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-pink-500 rounded-full opacity-20 blur-2xl"></div>
@@ -48,13 +59,13 @@ export default function About() {
             </div>
 
             {/* Quote */}
+          </div>
+        </div>
             <div className="mt-8 p-6 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg border-l-4 border-purple-600">
               <p className="text-gray-700 dark:text-gray-300 italic">
                 "I believe in writing clean, maintainable code and building solutions that make a real impact. My focus is always on delivering exceptional user experiences through performance optimization and scalable architecture."
               </p>
             </div>
-          </div>
-        </div>
       </div>
     </section>
   );

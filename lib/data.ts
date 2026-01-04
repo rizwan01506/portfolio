@@ -5,18 +5,19 @@ export const personalInfo = {
   name: "Md Rizwan",
   title: "Senior Frontend Engineer",
   roles: [
+    "Full-Stack Developer",
     "React.js Developer",
     "React Native Developer",
     "Frontend Architect",
-    "Full-Stack Developer"
   ],
-  tagline: "Building scalable, high-performance web and mobile applications with modern technologies",
+  // tagline: "Building scalable, high-performance web and mobile applications with modern technologies",
+  tagline: "Building scalable, high-performance web and mobile applications with modern technologies. Focused on clean architecture, performance optimization, and delivering production-ready user experiences.",
   location: "Hisar, Haryana, India",
   phone: "+91 83839-44926",
   email: "rizwan.react.dev@gmail.com",
   linkedin: "https://www.linkedin.com/in/mdrizwanreactdev",
   github: "https://github.com/mdrizwanreactdev",
-  resumeUrl: "/resume.pdf"
+  resumeUrl: "/rizwan_react_dev_jan_2026.pdf"
 };
 
 export const about = {
@@ -94,11 +95,38 @@ export const projects = [
       "Successfully published apps on Google Play Store and Apple App Store"
     ],
     links: {
-      android: "https://play.google.com/store",
-      ios: "https://apps.apple.com"
+      android: "https://play.google.com/store/apps/details?id=com.elegantsteel.app",
+      ios: "https://apps.apple.com/in/app/elegantsteel/id6755589469"
     }
-  },
-  {
+  }, , {
+    title: "SkillSense — Employee HRMS Mobile App",
+    description: "Employee-focused HRMS mobile application for attendance tracking, leave & loan requests, document uploads, profile management, and company announcements.",
+    techStack: ["React Native", "TypeScript", "Node.js", "Express.js", "MongoDB", "Geolocation"],
+    role: "Mobile Developer / Frontend Developer",
+    achievements: [
+      "Implemented location-based attendance check-ins with geolocation verification",
+      "Built leave and loan application workflows with real-time status updates",
+      "Implemented secure document upload and profile verification flows",
+      "Integrated push notifications and announcement feeds for internal communications"
+    ],
+    links: {
+      android: "https://play.google.com/store/apps/details?id=com.repozitory.skillsense"
+    }
+  }, {
+    title: "3DX Labs — 3D Printing & Customization",
+    description: "Marketing and product site for 3DX Labs offering 3D printing, product customization, and STL file printing services. Includes product catalog, customization flows, and contact/pricing pages.",
+    techStack: ["Next.js", "React.js", "Tailwind CSS", "MongoDB", "Node.js", "Express.js"],
+    role: "Full Stack Developer",
+    achievements: [
+      "Built responsive landing and product catalog pages with SEO-friendly markup",
+      "Implemented customization and STL upload flows for on-demand 3D printing",
+      "Optimized images and media using Next/Image for faster load times",
+      "Improved contact and conversion flows to increase inbound enquiries"
+    ],
+    links: {
+      live: "https://3dxlabs.in/"
+    }
+  }, {
     title: "CastCrew - Casting & Audition Management Platform",
     description: "Comprehensive platform for managing casting calls, auditions, and talent profiles with role-based access control",
     techStack: ["React.js", "TypeScript", "Tailwind CSS", "React Query", "Node.js", "MongoDB"],
@@ -111,10 +139,9 @@ export const projects = [
       "Implemented efficient data fetching and caching strategies"
     ],
     links: {
-      live: "https://castcrew.example.com"
+      live: "https://cast-crew.com/"
     }
-  },
-  {
+  }, {
     title: "Smart Building Automation & Indoor Climate Control",
     description: "IoT-based building automation system for climate control with role-based dashboards and real-time monitoring",
     techStack: ["React.js", "TypeScript", "Tailwind CSS", "NestJS", "MySQL", "Cypress"],
@@ -126,8 +153,7 @@ export const projects = [
       "Implemented lazy loading for optimized initial page load time",
       "Authored comprehensive test cases ensuring application stability"
     ]
-  },
-  {
+  }, {
     title: "US-Based Healthcare E-Commerce Platform",
     description: "Full-featured e-commerce platform for healthcare products with secure payment processing and order management",
     techStack: ["React.js", "Redux", "Styled-Components", "Node.js", "Express.js", "MongoDB"],
@@ -164,7 +190,7 @@ export const socialLinks = [
   },
   {
     name: "Download Resume",
-    url: "/resume.pdf",
+    url: "/rizwan_react_dev_jan_2026.pdf",
     icon: FaFileDownload,
     color: "#4caf50"
   }
