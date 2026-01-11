@@ -4,19 +4,19 @@ import { socialLinks } from '@/lib/data';
 
 export default function SocialMedia() {
   return (
-    <section id="socialmedia" className="py-20 px-4 bg-gray-50 dark:bg-slate-800/50">
-      <div className="container mx-auto max-w-6xl">
+    <section id="socialmedia" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-slate-800/50">
+      <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
             Let's Connect
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">
+          <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Find me on these platforms or download my resume
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {socialLinks.map((social, index) => {
             const Icon = social.icon;
             return (

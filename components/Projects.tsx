@@ -1,27 +1,106 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { projects } from '@/lib/data';
 import { FaExternalLinkAlt, FaGooglePlay, FaAppStore } from 'react-icons/fa';
 
 export default function Projects() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const slideInLeft = {
+    hidden: { 
+      opacity: 0, 
+      x: isMobile ? 0 : -60, 
+      y: isMobile ? 20 : 20, 
+      scale: isMobile ? 0.98 : 0.95 
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: isMobile ? 0.5 : 0.7,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
+  const slideInRight = {
+    hidden: { 
+      opacity: 0, 
+      x: isMobile ? 0 : 60, 
+      y: isMobile ? 20 : 20, 
+      scale: isMobile ? 0.98 : 0.95 
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: isMobile ? 0.5 : 0.7,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
+  const fadeInUp = {
+    hidden: { 
+      opacity: 0, 
+      y: isMobile ? 15 : 30, 
+      scale: isMobile ? 0.99 : 0.98 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: isMobile ? 0.4 : 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
   return (
-    <section id="projects" className="py-20 px-4">
-      <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+    <section id="projects" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
             Projects
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Real-world applications built with modern technologies, focusing on performance, scalability, and user experience
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project: any, index) => (
-            <div
+            <motion.div
               key={index}
               className="group bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+              variants={index % 2 === 0 ? slideInLeft : slideInRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
+              transition={{ delay: isMobile ? index * 0.05 : index * 0.1 }}
             >
               {/* Project Header */}
               <div className="p-6 bg-gradient-to-r from-purple-600 to-pink-600">
@@ -111,12 +190,18 @@ export default function Projects() {
                   </div>
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* More Projects CTA */}
-        <div className="mt-12 text-center">
+        <motion.div
+          className="mt-12 text-center"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
+        >
           <p className="text-gray-600 dark:text-gray-400 mb-4">
             These are just a few highlights. I've worked on many more projects across web and mobile platforms.
           </p>
@@ -126,7 +211,7 @@ export default function Projects() {
           >
             Discuss Your Project
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

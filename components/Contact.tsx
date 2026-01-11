@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
 import { personalInfo } from '@/lib/data';
 
@@ -14,6 +15,71 @@ export default function Contact() {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const slideInLeft = {
+    hidden: { 
+      opacity: 0, 
+      x: isMobile ? 0 : -60, 
+      y: isMobile ? 20 : 20, 
+      scale: isMobile ? 0.98 : 0.95 
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: isMobile ? 0.5 : 0.7,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
+  const slideInRight = {
+    hidden: { 
+      opacity: 0, 
+      x: isMobile ? 0 : 60, 
+      y: isMobile ? 20 : 20, 
+      scale: isMobile ? 0.98 : 0.95 
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: isMobile ? 0.5 : 0.7,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
+  const fadeInUp = {
+    hidden: { 
+      opacity: 0, 
+      y: isMobile ? 15 : 30, 
+      scale: isMobile ? 0.99 : 0.98 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: isMobile ? 0.4 : 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -71,21 +137,33 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 px-4">
-      <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+    <section id="contact" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
             Get In Touch
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Have a project in mind or want to collaborate? Feel free to reach out!
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Info */}
-          <div className="space-y-8">
+          <motion.div
+            className="space-y-8"
+            variants={slideInLeft}
+            initial="hidden"
+            whileInView="visible"
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
+        >
             <div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
                 Contact Information
@@ -144,10 +222,15 @@ export default function Contact() {
                 I typically respond within 24 hours. For urgent inquiries, please call me directly.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact Form */}
-          <div>
+          <motion.div
+            variants={slideInRight}
+            initial="hidden"
+            whileInView="visible"
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
+        >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
@@ -259,7 +342,7 @@ export default function Contact() {
                 )}
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

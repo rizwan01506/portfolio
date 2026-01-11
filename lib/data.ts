@@ -1,5 +1,5 @@
 import { FaReact, FaNodeJs, FaGitAlt, FaGithub, FaLinkedin, FaEnvelope, FaFileDownload } from 'react-icons/fa';
-import { SiTypescript, SiJavascript, SiRedux, SiTailwindcss, SiNextdotjs, SiMongodb, SiExpress, SiFirebase, SiJest, SiCypress } from 'react-icons/si';
+import { SiTypescript, SiJavascript, SiRedux, SiTailwindcss, SiNextdotjs, SiMongodb, SiExpress, SiFirebase, SiJest, SiCypress, SiHackerrank, SiReactquery, SiSolid, SiStyledcomponents, SiChakraui } from 'react-icons/si';
 
 export const personalInfo = {
   name: "Md Rizwan",
@@ -17,13 +17,14 @@ export const personalInfo = {
   email: "rizwan.react.dev@gmail.com",
   linkedin: "https://www.linkedin.com/in/mdrizwanreactdev",
   github: "https://github.com/mdrizwanreactdev",
+  hackerrank: "https://www.hackerrank.com/profile/mdrizwan83839441",
   resumeUrl: "/rizwan_react_dev_jan_2026.pdf"
 };
 
 export const about = {
-  summary: "Frontend Developer with 5+ years of experience designing, developing, and maintaining high-performance web and mobile applications. I specialize in building component-driven architectures, reusable UI components, and scalable frontend solutions using React.js, React Native, TypeScript, and modern web technologies.",
+  summary: "Senior Frontend Developer with 6+ years of experience designing, developing, and maintaining high-performance web and mobile applications. I specialize in building component-driven architectures, reusable UI components, and scalable frontend solutions using React.js, React Native, TypeScript, and modern web technologies.",
   highlights: [
-    "5+ years of professional experience in frontend development",
+    "6+ years of professional experience in frontend development",
     "Expert in React.js, React Native, Next.js, and TypeScript",
     "Strong focus on performance optimization and scalable architecture",
     "Delivered production-ready Android and iOS applications",
@@ -41,6 +42,10 @@ export const skills = {
     { name: "TypeScript", icon: SiTypescript, level: 90 },
     { name: "JavaScript (ES6+)", icon: SiJavascript, level: 95 },
     { name: "Redux / RTK", icon: SiRedux, level: 90 },
+    { name: "React Query", icon: SiReactquery, level: 88 },
+    { name: "SolidJS", icon: SiSolid, level: 75 },
+    { name: "Styled Components", icon: SiStyledcomponents, level: 85 },
+    { name: "Chakra UI", icon: SiChakraui, level: 87 },
     { name: "Tailwind CSS", icon: SiTailwindcss, level: 92 },
     { name: "HTML5 / CSS3", level: 95 },
   ],
@@ -98,7 +103,7 @@ export const projects = [
       android: "https://play.google.com/store/apps/details?id=com.elegantsteel.app",
       ios: "https://apps.apple.com/in/app/elegantsteel/id6755589469"
     }
-  }, , {
+  }, {
     title: "SkillSense — Employee HRMS Mobile App",
     description: "Employee-focused HRMS mobile application for attendance tracking, leave & loan requests, document uploads, profile management, and company announcements.",
     techStack: ["React Native", "TypeScript", "Node.js", "Express.js", "MongoDB", "Geolocation"],
@@ -183,6 +188,12 @@ export const socialLinks = [
     color: "#0077b5"
   },
   {
+    name: "HackerRank",
+    url: "https://www.hackerrank.com/profile/mdrizwan83839441",
+    icon: SiHackerrank,
+    color: "#00EA64"
+  },
+  {
     name: "Email",
     url: "mailto:rizwan.react.dev@gmail.com",
     icon: FaEnvelope,
@@ -198,7 +209,7 @@ export const socialLinks = [
 
 export const seo = {
   title: "Md Rizwan - Senior Frontend Engineer | React.js & React Native Developer",
-  description: "Experienced Frontend Engineer with 5+ years specializing in React.js, React Native, Next.js, and TypeScript. Building scalable web and mobile applications with focus on performance and user experience.",
+  description: "Experienced Senior Frontend Engineer with 6+ years specializing in React.js, React Native, Next.js, and TypeScript. Building scalable web and mobile applications with focus on performance and user experience.",
   keywords: "Md Rizwan, Frontend Developer, React Developer, React Native Developer, Next.js, TypeScript, JavaScript, Full Stack Developer, Mobile App Development, Web Development, Hisar, India",
   author: "Md Rizwan",
   image: "/og-image.jpg",
