@@ -43,7 +43,7 @@ export default function BottomNavigation() {
 
   return (
     <nav className="fixed bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-fit px-2">
-      <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 sm:py-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-full shadow-2xl border border-gray-200 dark:border-gray-700 overflow-x-auto scrollbar-hide">
+      <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-2 py-2 sm:py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-full shadow-2xl border border-gray-200 dark:border-gray-700 overflow-x-auto scrollbar-hide">
         {navLinks.map((link) => {
           const Icon = link.icon;
           const isActive = activeSection === link.href.substring(1);
