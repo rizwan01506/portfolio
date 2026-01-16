@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
-import { personalInfo } from '@/lib/data';
+import { personalInfo, socialLinks } from '@/lib/data';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     email: '',
     subject: '',
     message: '',
@@ -16,6 +16,8 @@ export default function Contact() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const checkMobile = () => {
@@ -27,11 +29,11 @@ export default function Contact() {
   }, []);
 
   const slideInLeft = {
-    hidden: { 
-      opacity: 0, 
-      x: isMobile ? 0 : -60, 
-      y: isMobile ? 20 : 20, 
-      scale: isMobile ? 0.98 : 0.95 
+    hidden: {
+      opacity: 0,
+      x: isMobile ? 0 : -60,
+      y: isMobile ? 20 : 20,
+      scale: isMobile ? 0.98 : 0.95
     },
     visible: {
       opacity: 1,
@@ -46,11 +48,11 @@ export default function Contact() {
   };
 
   const slideInRight = {
-    hidden: { 
-      opacity: 0, 
-      x: isMobile ? 0 : 60, 
-      y: isMobile ? 20 : 20, 
-      scale: isMobile ? 0.98 : 0.95 
+    hidden: {
+      opacity: 0,
+      x: isMobile ? 0 : 60,
+      y: isMobile ? 20 : 20,
+      scale: isMobile ? 0.98 : 0.95
     },
     visible: {
       opacity: 1,
@@ -65,10 +67,10 @@ export default function Contact() {
   };
 
   const fadeInUp = {
-    hidden: { 
-      opacity: 0, 
-      y: isMobile ? 15 : 30, 
-      scale: isMobile ? 0.99 : 0.98 
+    hidden: {
+      opacity: 0,
+      y: isMobile ? 15 : 30,
+      scale: isMobile ? 0.99 : 0.98
     },
     visible: {
       opacity: 1,
@@ -84,8 +86,8 @@ export default function Contact() {
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = 'Name is required';
     }
 
     if (!formData.email.trim()) {
@@ -100,29 +102,59 @@ export default function Contact() {
 
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+  const GOOGLE_SHEET_URL =
+    'https://script.google.com/macros/s/AKfycbyq9wRrYDbN0Q2HIx5Y8r1uvTw8hiD772Vx4bQ9YHAu06iduL3c6R0xOYh3W7hlK1PT/exec';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
+    setErrorMessage('');
+    setShowSuccess(false);
 
-    // Simulate form submission (replace with actual API call)
-    setTimeout(() => {
-      alert('Thank you for your message! I will get back to you soon.');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+    // Log form data to console
+    console.log('Form Submitted:', formData);
+
+    try {
+      const response = await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      // Log response attempt
+      console.log('Form submission initiated');
+
+      // Since we're using no-cors, we can't read the response
+      // But we assume success if no error was thrown
+      setFormData({
+        fullName: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+      setShowSuccess(true);
+
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setErrorMessage('Failed to send message. Please try again later or contact me directly via email.');
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleChange = (
@@ -134,10 +166,14 @@ export default function Contact() {
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
+    // Clear error message when user starts typing
+    if (errorMessage) {
+      setErrorMessage('');
+    }
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto">
         <motion.div
           className="text-center mb-12"
@@ -162,8 +198,8 @@ export default function Contact() {
             variants={slideInLeft}
             initial="hidden"
             whileInView="visible"
-          viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
-        >
+            viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
+          >
             <div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
                 Contact Information
@@ -218,9 +254,47 @@ export default function Contact() {
               <h4 className="font-semibold text-gray-800 dark:text-white mb-2">
                 Quick Response
               </h4>
-              <p className="text-gray-700 dark:text-gray-300 text-sm">
+              <p className="text-gray-700 dark:text-gray-300 text-sm mb-6">
                 I typically respond within 24 hours. For urgent inquiries, please call me directly.
               </p>
+              
+              {/* Social Media Icons */}
+              <div className="mt-6 pt-6 border-t-2 border-purple-200 dark:border-purple-800">
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4 text-left">
+                  Let&apos;s Connect
+                </p>
+                <div className="flex items-center justify-between sm:justify-start gap-2.5 sm:gap-3 flex-nowrap">
+                  {socialLinks.map((social, index) => {
+                    const Icon = social.icon;
+                    return (
+                      <motion.a
+                        key={index}
+                        href={social.url}
+                        target={social.name !== 'Email' ? '_blank' : undefined}
+                        rel={social.name !== 'Email' ? 'noopener noreferrer' : undefined}
+                        download={social.name === 'Download Resume' ? true : undefined}
+                        aria-label={social.name}
+                        whileHover={{ scale: 1.15, y: -3 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="group relative w-10 h-10 sm:w-11 sm:h-11 rounded-full shadow-md hover:shadow-xl flex items-center justify-center transition-all duration-300 flex-shrink-0"
+                        style={{
+                          backgroundColor: social.color,
+                        }}
+                      >
+                        {/* Icon - white color for contrast */}
+                        <Icon 
+                          className="relative z-10 text-lg sm:text-xl text-white transition-all duration-300 group-hover:scale-110" 
+                        />
+                        {/* Tooltip */}
+                        <span className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-gray-900 dark:bg-gray-700 text-white text-xs px-3 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none z-20 shadow-lg">
+                          {social.name}
+                          <span className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 dark:bg-gray-700 rotate-45"></span>
+                        </span>
+                      </motion.a>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </motion.div>
 
@@ -229,29 +303,68 @@ export default function Contact() {
             variants={slideInRight}
             initial="hidden"
             whileInView="visible"
-          viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
-        >
+            viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
+          >
+            {showSuccess && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-green-800 dark:text-green-300">Message Sent Successfully!</p>
+                    <p className="text-sm text-green-700 dark:text-green-400">Thank you for your message! I will get back to you soon.</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+            {errorMessage && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-red-800 dark:text-red-300">Error</p>
+                    <p className="text-sm text-red-700 dark:text-red-400">{errorMessage}</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
-                  htmlFor="name"
+                  htmlFor="fullName"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
                   Name *
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
+                  id="fullName"
+                  name="fullName"
+                  value={formData.fullName}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-white dark:bg-slate-800 border ${
-                    errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
-                  } rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all`}
-                  placeholder="Your name"
+                  className={`w-full px-4 py-3 bg-white dark:bg-slate-800 border ${errors.fullName ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                    } rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all`}
+                  placeholder="Your FullName"
                 />
-                {errors.name && (
-                  <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+                {errors.fullName && (
+                  <p className="mt-1 text-sm text-red-500">{errors.fullName}</p>
                 )}
               </div>
 
@@ -268,9 +381,8 @@ export default function Contact() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-white dark:bg-slate-800 border ${
-                    errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
-                  } rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all`}
+                  className={`w-full px-4 py-3 bg-white dark:bg-slate-800 border ${errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                    } rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all`}
                   placeholder="your.email@example.com"
                 />
                 {errors.email && (
@@ -291,9 +403,8 @@ export default function Contact() {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-white dark:bg-slate-800 border ${
-                    errors.subject ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
-                  } rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all`}
+                  className={`w-full px-4 py-3 bg-white dark:bg-slate-800 border ${errors.subject ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                    } rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all`}
                   placeholder="How can I help you?"
                 />
                 {errors.subject && (
@@ -314,9 +425,8 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  className={`w-full px-4 py-3 bg-white dark:bg-slate-800 border ${
-                    errors.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
-                  } rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all resize-none`}
+                  className={`w-full px-4 py-3 bg-white dark:bg-slate-800 border ${errors.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                    } rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all resize-none`}
                   placeholder="Tell me about your project or inquiry..."
                 />
                 {errors.message && (

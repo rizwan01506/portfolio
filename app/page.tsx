@@ -18,7 +18,7 @@ export default function Home() {
       <Projects />
       <SocialMedia />
       <Contact />
-      <Footer />
+      {/* <Footer /> */}
       <BottomNavigation />
     </main>
   );

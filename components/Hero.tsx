@@ -83,11 +83,11 @@ export default function Hero() {
   };
 
   const slideInLeft = {
-    hidden: { 
-      opacity: 0, 
-      x: isMobile ? 0 : -50, 
+    hidden: {
+      opacity: 0,
+      x: isMobile ? 0 : -50,
       y: isMobile ? 20 : 0,
-      scale: isMobile ? 0.98 : 0.95 
+      scale: isMobile ? 0.98 : 0.95
     },
     visible: {
       opacity: 1,
@@ -103,11 +103,11 @@ export default function Hero() {
   };
 
   const slideInRight = {
-    hidden: { 
-      opacity: 0, 
-      x: isMobile ? 0 : 50, 
+    hidden: {
+      opacity: 0,
+      x: isMobile ? 0 : 50,
       y: isMobile ? 20 : 0,
-      scale: isMobile ? 0.98 : 0.95 
+      scale: isMobile ? 0.98 : 0.95
     },
     visible: {
       opacity: 1,
@@ -155,9 +155,23 @@ export default function Hero() {
             {/* Greeting */}
             <motion.div variants={itemVariants} className="-mb-1 sm:mb-0">
               <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 font-medium">
-                Hi there! 👋 I'm
+                Hi there!{' '}
+                <motion.span
+                  className="inline-block origin-bottom-right"
+                  animate={{ rotate: [0, 20, -10, 20, 0] }}
+                  transition={{
+                    duration: 1.2,
+                    repeat: Infinity,
+                    repeatDelay: 1,
+                    ease: 'easeInOut',
+                  }}
+                >
+                  👋
+                </motion.span>{' '}
+                I'm
               </p>
             </motion.div>
+
 
             {/* Name */}
             <motion.h1
@@ -205,7 +219,7 @@ export default function Hero() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="relative">
-                  <div className="text-3xl sm:text-4xl font-bold gradient-text mb-1">20+</div>
+                  <div className="text-2xl sm:text-4xl font-bold gradient-text mb-1">30+</div>
                   <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">Total Projects</div>
                 </div>
               </motion.div>
@@ -216,7 +230,7 @@ export default function Hero() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="relative">
-                  <div className="text-3xl sm:text-4xl font-bold gradient-text mb-1">16+</div>
+                  <div className="text-2xl sm:text-4xl font-bold gradient-text mb-1">26+</div>
                   <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">React.js/Next.js</div>
                 </div>
               </motion.div>
@@ -227,7 +241,7 @@ export default function Hero() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="relative">
-                  <div className="text-3xl sm:text-4xl font-bold gradient-text mb-1">4+</div>
+                  <div className="text-2xl sm:text-4xl font-bold gradient-text mb-1">4+</div>
                   <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">React Native</div>
                 </div>
               </motion.div>

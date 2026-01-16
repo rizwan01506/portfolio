@@ -221,7 +221,7 @@ export default function About() {
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
-                transition={{ 
+                transition={{
                   delay: index * 0.04,
                   duration: 0.5,
                   ease: [0.16, 1, 0.3, 1]
@@ -267,10 +267,10 @@ export default function About() {
             </div>
 
             <div className="space-y-2">
-              <h4 className="text-base sm:text-lg font-bold text-gray-800 dark:text-white">
+              <h4 className="text-base sm:text-lg font-bold text-purple-600 dark:text-purple-400">
                 {education.degree}
               </h4>
-              <p className="text-sm sm:text-base text-purple-600 dark:text-purple-400 font-semibold">
+              <p className="text-sm sm:text-base text-gray-800 dark:text-white font-semibold">
                 {education.field}
               </p>
               <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300">

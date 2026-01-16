@@ -8,31 +8,19 @@ import { IconType } from 'react-icons';
 interface SkillCardProps {
   name: string;
   icon?: IconType;
-  level: number;
 }
 
-function SkillCard({ name, icon: Icon, level }: SkillCardProps) {
+function SkillCard({ name, icon: Icon }: SkillCardProps) {
   return (
-    <div className="group p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-3">
-          {Icon && (
-            <Icon className="text-3xl text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform" />
-          )}
-          <h3 className="font-semibold text-gray-800 dark:text-white">{name}</h3>
+    <div className="group p-4 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-300 hover:-translate-y-1 flex flex-col items-center justify-center text-center gap-2 h-full w-full min-h-[90px] max-h-[90px]">
+      {Icon ? (
+        <Icon className="text-2xl text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
+      ) : (
+        <div className="w-7 h-7 bg-gradient-to-br from-purple-600 to-pink-600 rounded-md flex items-center justify-center flex-shrink-0">
+          <span className="text-white font-extrabold text-xs">{name.charAt(0)}</span>
         </div>
-        <span className="text-sm font-medium text-purple-600 dark:text-purple-400">
-          {level}%
-        </span>
-      </div>
-      
-      {/* Progress Bar */}
-      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
-        <div
-          className="h-full bg-gradient-to-r from-purple-600 to-pink-600 rounded-full transition-all duration-1000 ease-out"
-          style={{ width: `${level}%` }}
-        ></div>
-      </div>
+      )}
+      <h3 className="font-extrabold text-gray-700 dark:text-gray-300 text-xs leading-tight">{name}</h3>
     </div>
   );
 }
@@ -51,10 +39,10 @@ export default function Skills() {
   }, []);
 
   const slideInLeft = {
-    hidden: { 
-      opacity: 0, 
-      x: isMobile ? 0 : -60, 
-      y: isMobile ? 20 : 20 
+    hidden: {
+      opacity: 0,
+      x: isMobile ? 0 : -60,
+      y: isMobile ? 20 : 20
     },
     visible: {
       opacity: 1,
@@ -68,10 +56,10 @@ export default function Skills() {
   };
 
   const slideInRight = {
-    hidden: { 
-      opacity: 0, 
-      x: isMobile ? 0 : 60, 
-      y: isMobile ? 20 : 20 
+    hidden: {
+      opacity: 0,
+      x: isMobile ? 0 : 60,
+      y: isMobile ? 20 : 20
     },
     visible: {
       opacity: 1,
@@ -85,10 +73,10 @@ export default function Skills() {
   };
 
   const fadeInUp = {
-    hidden: { 
-      opacity: 0, 
-      y: isMobile ? 15 : 30, 
-      scale: isMobile ? 0.99 : 0.98 
+    hidden: {
+      opacity: 0,
+      y: isMobile ? 15 : 30,
+      scale: isMobile ? 0.99 : 0.98
     },
     visible: {
       opacity: 1,
@@ -102,10 +90,10 @@ export default function Skills() {
   };
 
   const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: isMobile ? 10 : 20, 
-      scale: isMobile ? 0.98 : 0.96 
+    hidden: {
+      opacity: 0,
+      y: isMobile ? 10 : 20,
+      scale: isMobile ? 0.98 : 0.96
     },
     visible: {
       opacity: 1,
@@ -118,7 +106,7 @@ export default function Skills() {
     }
   };
 
-  const categoriesMap: Record<string, typeof skills.frontend> = {
+  const categoriesMap: Record<string, any> = {
     Frontend: skills.frontend,
     Backend: skills.backend,
     Tools: skills.tools,
@@ -150,16 +138,15 @@ export default function Skills() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            {(['All','Frontend','Backend','Tools'] as const).map((cat) => (
+            {(['All', 'Frontend', 'Backend', 'Tools'] as const).map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
                 aria-pressed={filter === cat}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                  filter === cat
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
-                    : 'bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300'
-                }`}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition ${filter === cat
+                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
+                  : 'bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300'
+                  }`}
               >
                 {cat}
               </button>
@@ -181,7 +168,7 @@ export default function Skills() {
                   <span className="w-2 h-8 bg-gradient-to-b from-purple-600 to-pink-600 rounded-full"></span>
                   Frontend Technologies
                 </h3>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {skills.frontend.map((skill, index) => (
                     <motion.div
                       key={`fe-${index}`}
@@ -190,6 +177,7 @@ export default function Skills() {
                       whileInView="visible"
                       viewport={{ once: true, amount: 0.2 }}
                       transition={{ delay: isMobile ? index * 0.03 : index * 0.05 }}
+                      className="h-full"
                     >
                       <SkillCard {...skill} />
                     </motion.div>
@@ -202,13 +190,13 @@ export default function Skills() {
                 variants={slideInRight}
                 initial="hidden"
                 whileInView="visible"
-          viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
-        >
+                viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
+              >
                 <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white flex items-center gap-2">
                   <span className="w-2 h-8 bg-gradient-to-b from-purple-600 to-pink-600 rounded-full"></span>
                   Backend & Database
                 </h3>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                   {skills.backend.map((skill, index) => (
                     <motion.div
                       key={`be-${index}`}
@@ -217,6 +205,7 @@ export default function Skills() {
                       whileInView="visible"
                       viewport={{ once: true, amount: 0.2 }}
                       transition={{ delay: isMobile ? index * 0.03 : index * 0.05 }}
+                      className="h-full"
                     >
                       <SkillCard {...skill} />
                     </motion.div>
@@ -235,7 +224,7 @@ export default function Skills() {
                   <span className="w-2 h-8 bg-gradient-to-b from-purple-600 to-pink-600 rounded-full"></span>
                   Tools & Methodologies
                 </h3>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                   {skills.tools.map((skill, index) => (
                     <motion.div
                       key={`tools-${index}`}
@@ -244,6 +233,7 @@ export default function Skills() {
                       whileInView="visible"
                       viewport={{ once: true, amount: 0.2 }}
                       transition={{ delay: isMobile ? index * 0.03 : index * 0.05 }}
+                      className="h-full"
                     >
                       <SkillCard {...skill} />
                     </motion.div>
@@ -256,14 +246,14 @@ export default function Skills() {
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
-          viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
-        >
+              viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
+            >
               <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white flex items-center gap-2">
                 <span className="w-2 h-8 bg-gradient-to-b from-purple-600 to-pink-600 rounded-full"></span>
                 {filter === 'Frontend' ? 'Frontend Technologies' : filter === 'Backend' ? 'Backend & Database' : 'Tools & Methodologies'}
               </h3>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {categoriesMap[filter].map((skill, index) => (
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {categoriesMap[filter].map((skill: any, index: number) => (
                   <motion.div
                     key={`${filter}-${index}`}
                     variants={cardVariants}
@@ -271,6 +261,7 @@ export default function Skills() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ delay: index * 0.05 }}
+                    className="h-full"
                   >
                     <SkillCard {...skill} />
                   </motion.div>

@@ -1,5 +1,32 @@
-import { FaReact, FaNodeJs, FaGitAlt, FaGithub, FaLinkedin, FaEnvelope, FaFileDownload } from 'react-icons/fa';
-import { SiTypescript, SiJavascript, SiRedux, SiTailwindcss, SiNextdotjs, SiMongodb, SiExpress, SiFirebase, SiJest, SiCypress, SiHackerrank, SiReactquery, SiSolid, SiStyledcomponents, SiChakraui } from 'react-icons/si';
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaSlack } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaGitAlt } from "react-icons/fa";
+import {
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiRedux,
+  SiReactquery,
+  SiSolid,
+  SiStyledcomponents,
+  SiChakraui,
+  SiTailwindcss,
+  SiHtml5,
+  SiCss3,
+  SiSass,
+  SiBootstrap,
+  SiMui,
+  SiExpress,
+  SiMongodb,
+  SiFirebase,
+  SiMysql,
+  SiPostgresql,
+  SiPrisma,
+  SiJest,
+  SiCypress,
+  SiDocker,
+  SiHackerrank,
+} from "react-icons/si";
+
 
 export const personalInfo = {
   name: "Md Rizwan",
@@ -36,35 +63,48 @@ export const about = {
 
 export const skills = {
   frontend: [
-    { name: "React.js", icon: FaReact, level: 95 },
-    { name: "React Native", icon: FaReact, level: 90 },
-    { name: "Next.js", icon: SiNextdotjs, level: 88 },
-    { name: "TypeScript", icon: SiTypescript, level: 90 },
-    { name: "JavaScript (ES6+)", icon: SiJavascript, level: 95 },
-    { name: "Redux / RTK", icon: SiRedux, level: 90 },
-    { name: "React Query", icon: SiReactquery, level: 88 },
-    { name: "SolidJS", icon: SiSolid, level: 75 },
-    { name: "Styled Components", icon: SiStyledcomponents, level: 85 },
-    { name: "Chakra UI", icon: SiChakraui, level: 87 },
-    { name: "Tailwind CSS", icon: SiTailwindcss, level: 92 },
-    { name: "HTML5 / CSS3", level: 95 },
+    { name: "React.js", icon: FaReact },
+    { name: "React Native", icon: FaReact },
+    { name: "Next.js", icon: SiNextdotjs },
+    { name: "TypeScript", icon: SiTypescript },
+    { name: "JavaScript (ES6+)", icon: SiJavascript },
+    { name: "Redux / RTK", icon: SiRedux },
+    { name: "React Query", icon: SiReactquery },
+    { name: "SolidJS", icon: SiSolid },
+    { name: "Styled Components", icon: SiStyledcomponents },
+    { name: "Chakra UI", icon: SiChakraui },
+    { name: "Tailwind CSS", icon: SiTailwindcss },
+    { name: "HTML5", icon: SiHtml5 },
+    { name: "CSS3", icon: SiCss3 },
+    { name: "SCSS / Sass", icon: SiSass },
+    { name: "Bootstrap", icon: SiBootstrap },
+    { name: "Material UI (MUI)", icon: SiMui },
   ],
+
   backend: [
-    { name: "Node.js", icon: FaNodeJs, level: 85 },
-    { name: "Express.js", icon: SiExpress, level: 85 },
-    { name: "MongoDB", icon: SiMongodb, level: 80 },
-    { name: "Firebase", icon: SiFirebase, level: 82 },
-    { name: "REST APIs", level: 90 },
-    { name: "JWT Authentication", level: 85 },
+    { name: "Node.js", icon: FaNodeJs },
+    { name: "Express.js", icon: SiExpress },
+
+    { name: "RESTful APIs", icon: SiExpress },
+    { name: "MongoDB", icon: SiMongodb },
+
+    { name: "MySQL", icon: SiMysql },
+    { name: "PostgreSQL", icon: SiPostgresql },
+
+    { name: "Firebase", icon: SiFirebase },
+    { name: "Prisma ORM", icon: SiPrisma },
   ],
+
   tools: [
-    { name: "Git / GitHub", icon: FaGitAlt, level: 92 },
-    { name: "CI/CD Pipelines", level: 85 },
-    { name: "Jest", icon: SiJest, level: 80 },
-    { name: "Cypress", icon: SiCypress, level: 78 },
-    { name: "Agile / Scrum", level: 90 },
-    { name: "Jira", level: 88 },
-  ]
+    { name: "Git / GitHub", icon: FaGitAlt },
+    { name: "Docker", icon: SiDocker },
+    { name: "CI/CD Pipelines", icon: FaGitAlt },
+    { name: "Jest", icon: SiJest },
+    { name: "Cypress", icon: SiCypress },
+    { name: "Agile / Scrum" },
+    { name: "Jira" },
+    { name: "Slack", icon: FaSlack },
+  ],
 };
 
 export const experience = [
@@ -132,6 +172,37 @@ export const projects = [
       live: "https://3dxlabs.in/"
     }
   }, {
+    title: "US-Based Healthcare E-Commerce Platform",
+    description: "Full-featured e-commerce platform for healthcare products with secure payment processing and order management",
+    techStack: ["React.js", "Redux", "Styled-Components", "Node.js", "Express.js", "MongoDB"],
+    role: "Frontend Developer",
+    achievements: [
+      "Implemented Redux for global state management and scalable data flow",
+      "Refactored legacy codebase migrating class components to functional components with Hooks",
+      "Developed responsive checkout UI with real-time cart updates",
+      "Contributed to payment gateway integration (PayPal, Stripe, Razorpay)",
+      "Built secure authentication flows with form validation and session management",
+      "Configured Nodemailer for transactional emails and order confirmations"
+    ],
+    links: {
+      live: "https://www.eargo.com/"
+    }
+  }, {
+    title: "Smart Building Automation & Indoor Climate Control",
+    description: "IoT-based building automation system for climate control with role-based dashboards and real-time monitoring",
+    techStack: ["React.js", "TypeScript", "Tailwind CSS", "NestJS", "MySQL", "Cypress"],
+    role: "Frontend Developer",
+    achievements: [
+      "Implemented React Query for efficient API data fetching and caching",
+      "Designed dynamic UI rendering based on multiple user roles (Super Admin, Company Admin, User)",
+      "Integrated Cypress E2E testing for critical business workflows",
+      "Implemented lazy loading for optimized initial page load time",
+      "Authored comprehensive test cases ensuring application stability"
+    ],
+    links: {
+      live: "https://www.fidelix.com/"
+    }
+  }, {
     title: "CastCrew - Casting & Audition Management Platform",
     description: "Comprehensive platform for managing casting calls, auditions, and talent profiles with role-based access control",
     techStack: ["React.js", "TypeScript", "Tailwind CSS", "React Query", "Node.js", "MongoDB"],
@@ -146,50 +217,25 @@ export const projects = [
     links: {
       live: "https://cast-crew.com/"
     }
-  }, {
-    title: "Smart Building Automation & Indoor Climate Control",
-    description: "IoT-based building automation system for climate control with role-based dashboards and real-time monitoring",
-    techStack: ["React.js", "TypeScript", "Tailwind CSS", "NestJS", "MySQL", "Cypress"],
-    role: "Frontend Developer",
-    achievements: [
-      "Implemented React Query for efficient API data fetching and caching",
-      "Designed dynamic UI rendering based on multiple user roles (Super Admin, Company Admin, User)",
-      "Integrated Cypress E2E testing for critical business workflows",
-      "Implemented lazy loading for optimized initial page load time",
-      "Authored comprehensive test cases ensuring application stability"
-    ]
-  }, {
-    title: "US-Based Healthcare E-Commerce Platform",
-    description: "Full-featured e-commerce platform for healthcare products with secure payment processing and order management",
-    techStack: ["React.js", "Redux", "Styled-Components", "Node.js", "Express.js", "MongoDB"],
-    role: "Frontend Developer",
-    achievements: [
-      "Implemented Redux for global state management and scalable data flow",
-      "Refactored legacy codebase migrating class components to functional components with Hooks",
-      "Developed responsive checkout UI with real-time cart updates",
-      "Contributed to payment gateway integration (PayPal, Stripe, Razorpay)",
-      "Built secure authentication flows with form validation and session management",
-      "Configured Nodemailer for transactional emails and order confirmations"
-    ]
   }
 ];
 
 export const socialLinks = [
   {
     name: "GitHub",
-    url: "https://github.com/mdrizwanreactdev",
+    url: "https://github.com/rizwan01506",
     icon: FaGithub,
     color: "#333"
   },
   {
     name: "LinkedIn",
-    url: "https://www.linkedin.com/in/mdrizwanreactdev",
+    url: "https://www.linkedin.com/in/rizwan-react-dev",
     icon: FaLinkedin,
     color: "#0077b5"
   },
   {
     name: "HackerRank",
-    url: "https://www.hackerrank.com/profile/mdrizwan83839441",
+    url: "https://www.hackerrank.com/profile/rizwanreactdev",
     icon: SiHackerrank,
     color: "#00EA64"
   },
@@ -200,10 +246,10 @@ export const socialLinks = [
     color: "#ea4335"
   },
   {
-    name: "Download Resume",
-    url: "/rizwan_react_dev_jan_2026.pdf",
-    icon: FaFileDownload,
-    color: "#4caf50"
+    name: "WhatsApp",
+    url: "https://wa.me/918383944926",
+    icon: FaWhatsapp,
+    color: "#25D366"
   }
 ];
 
