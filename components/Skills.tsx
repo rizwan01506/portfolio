@@ -168,7 +168,7 @@ export default function Skills() {
                   <span className="w-2 h-8 bg-gradient-to-b from-purple-600 to-pink-600 rounded-full"></span>
                   Frontend Technologies
                 </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                   {skills.frontend.map((skill, index) => (
                     <motion.div
                       key={`fe-${index}`}

@@ -112,7 +112,7 @@ export default function About() {
 
   return (
     <section id="about" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 dark:from-slate-900 dark:to-slate-800/50 overflow-x-hidden">
-      <div className="container mx-auto max-w-7xl w-full">
+      <div className="container mx-auto w-full">
         {/* Section Header */}
         <motion.div
           className="text-center mb-12 sm:mb-16"

@@ -130,7 +130,7 @@ export const projects = [
   {
     title: "Elegant Mobile App",
     description: "Role-based mobile application for Distributors, Salespersons, and Influencers to manage sales entries, site verification, and reward point distribution",
-    techStack: ["React Native", "Node.js", "Express.js", "MongoDB", "React Navigation"],
+    techStack: ["React Native", "Node.js", "Express.js", "MongoDB", "React Navigation", "React Query"],
     role: "Full Stack Developer",
     achievements: [
       "Designed and developed multi-role application improving operational efficiency",
@@ -146,7 +146,7 @@ export const projects = [
   }, {
     title: "SkillSense — Employee HRMS Mobile App",
     description: "Employee-focused HRMS mobile application for attendance tracking, leave & loan requests, document uploads, profile management, and company announcements.",
-    techStack: ["React Native", "TypeScript", "Node.js", "Express.js", "MongoDB", "Geolocation"],
+    techStack: ["React Native", "TypeScript", "Node.js", "Express.js", "MongoDB", "Geolocation", "React Query"],
     role: "Mobile Developer / Frontend Developer",
     achievements: [
       "Implemented location-based attendance check-ins with geolocation verification",
@@ -155,12 +155,13 @@ export const projects = [
       "Integrated push notifications and announcement feeds for internal communications"
     ],
     links: {
-      android: "https://play.google.com/store/apps/details?id=com.repozitory.skillsense"
+      android: "https://play.google.com/store/apps/details?id=com.repozitory.skillsense",
+      ios: "https://apps.apple.com/in/app/skillsense-hrms/id6756061118"
     }
   }, {
     title: "3DX Labs — 3D Printing & Customization",
     description: "Marketing and product site for 3DX Labs offering 3D printing, product customization, and STL file printing services. Includes product catalog, customization flows, and contact/pricing pages.",
-    techStack: ["Next.js", "React.js", "Tailwind CSS", "MongoDB", "Node.js", "Express.js"],
+    techStack: ["Next.js", "React.js", "Tailwind CSS", "MongoDB", "Node.js", "Express.js", "React Query"],
     role: "Full Stack Developer",
     achievements: [
       "Built responsive landing and product catalog pages with SEO-friendly markup",
@@ -174,7 +175,7 @@ export const projects = [
   }, {
     title: "US-Based Healthcare E-Commerce Platform",
     description: "Full-featured e-commerce platform for healthcare products with secure payment processing and order management",
-    techStack: ["React.js", "Redux", "Styled-Components", "Node.js", "Express.js", "MongoDB"],
+    techStack: ["React.js", "Redux", "Styled-Components", "Node.js", "Express.js", "MongoDB", "React Query"],
     role: "Frontend Developer",
     achievements: [
       "Implemented Redux for global state management and scalable data flow",
@@ -190,7 +191,7 @@ export const projects = [
   }, {
     title: "Smart Building Automation & Indoor Climate Control",
     description: "IoT-based building automation system for climate control with role-based dashboards and real-time monitoring",
-    techStack: ["React.js", "TypeScript", "Tailwind CSS", "NestJS", "MySQL", "Cypress"],
+    techStack: ["React.js", "TypeScript", "Tailwind CSS", "NestJS", "MySQL", "Cypress", "React Query"],
     role: "Frontend Developer",
     achievements: [
       "Implemented React Query for efficient API data fetching and caching",
@@ -205,7 +206,7 @@ export const projects = [
   }, {
     title: "CastCrew - Casting & Audition Management Platform",
     description: "Comprehensive platform for managing casting calls, auditions, and talent profiles with role-based access control",
-    techStack: ["React.js", "TypeScript", "Tailwind CSS", "React Query", "Node.js", "MongoDB"],
+    techStack: ["React.js", "TypeScript", "Tailwind CSS", "React Query", "Node.js", "MongoDB", "React Query"],
     role: "Full-Stack Developer",
     achievements: [
       "Engineered secure role-based routing with protected routes and access control",
