@@ -368,7 +368,7 @@ export default function Hero() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="relative">
-                  <div className="text-2xl sm:text-4xl font-bold gradient-text mb-1">30+</div>
+                  <div className="text-2xl sm:text-4xl font-bold gradient-text mb-1">15+</div>
                   <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">Total Projects</div>
                 </div>
               </motion.div>
@@ -379,7 +379,7 @@ export default function Hero() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="relative">
-                  <div className="text-2xl sm:text-4xl font-bold gradient-text mb-1">26+</div>
+                  <div className="text-2xl sm:text-4xl font-bold gradient-text mb-1">11+</div>
                   <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">React.js/Next.js</div>
                 </div>
               </motion.div>
