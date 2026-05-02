@@ -188,7 +188,7 @@ export default function Hero() {
                     }}
                   >
                     <Image
-                      src="/formal-profile-image.png"
+                      src="/profile-picture.png"
                       alt={personalInfo.name}
                       fill
                       className="object-cover object-top"
