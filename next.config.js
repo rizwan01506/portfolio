@@ -1,11 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    domains: ['images.unsplash.com'],
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  outputFileTracingRoot: __dirname,
 };
 
 module.exports = nextConfig;

@@ -119,11 +119,9 @@ export default function Contact() {
     setErrorMessage('');
     setShowSuccess(false);
 
-    // Log form data to console
-    console.log('Form Submitted:', formData);
-
     try {
-      const response = await fetch(GOOGLE_SHEET_URL, {
+      // opaque no-cors response can't be inspected; treat no thrown error as success
+      await fetch(GOOGLE_SHEET_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -132,11 +130,6 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      // Log response attempt
-      console.log('Form submission initiated');
-
-      // Since we're using no-cors, we can't read the response
-      // But we assume success if no error was thrown
       setFormData({
         fullName: '',
         email: '',
@@ -173,8 +166,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto">
+    <section id="contact" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           className="text-center mb-12"
           variants={fadeInUp}
@@ -182,10 +175,10 @@ export default function Contact() {
           whileInView="visible"
           viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 gradient-text">
             Get In Touch
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full"></div>
+          <div className="w-20 h-px bg-black/20 dark:bg-white/20 mx-auto"></div>
           <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Have a project in mind or want to collaborate? Feel free to reach out!
           </p>
@@ -201,16 +194,16 @@ export default function Contact() {
             viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
           >
             <div>
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+              <h3 className="font-serif text-2xl font-semibold text-gray-800 dark:text-white mb-6">
                 Contact Information
               </h3>
               <div className="space-y-4">
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-lg shadow hover:shadow-lg transition-all group"
+                  className="flex items-center gap-4 p-4 bg-transparent border border-black/10 dark:border-white/10 rounded-md hover:border-black/25 dark:hover:border-white/25 transition-colors group"
                 >
-                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <FaEnvelope className="text-purple-600 dark:text-purple-400" />
+                  <div className="w-12 h-12 border border-black/15 dark:border-white/15 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <FaEnvelope className="text-black dark:text-white" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Email</p>
@@ -222,10 +215,10 @@ export default function Contact() {
 
                 <a
                   href={`tel:${personalInfo.phone}`}
-                  className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-lg shadow hover:shadow-lg transition-all group"
+                  className="flex items-center gap-4 p-4 bg-transparent border border-black/10 dark:border-white/10 rounded-md hover:border-black/25 dark:hover:border-white/25 transition-colors group"
                 >
-                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <FaPhone className="text-purple-600 dark:text-purple-400" />
+                  <div className="w-12 h-12 border border-black/15 dark:border-white/15 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <FaPhone className="text-black dark:text-white" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Phone</p>
@@ -235,9 +228,9 @@ export default function Contact() {
                   </div>
                 </a>
 
-                <div className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-lg shadow">
-                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
-                    <FaMapMarkerAlt className="text-purple-600 dark:text-purple-400" />
+                <div className="flex items-center gap-4 p-4 bg-transparent border border-black/10 dark:border-white/10 rounded-md">
+                  <div className="w-12 h-12 border border-black/15 dark:border-white/15 rounded-full flex items-center justify-center">
+                    <FaMapMarkerAlt className="text-black dark:text-white" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Location</p>
@@ -250,7 +243,7 @@ export default function Contact() {
             </div>
 
             {/* Additional Info */}
-            <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg">
+            <div className="p-6 bg-transparent border border-black/10 dark:border-white/10 rounded-md">
               <h4 className="font-semibold text-gray-800 dark:text-white mb-2">
                 Quick Response
               </h4>
@@ -259,7 +252,7 @@ export default function Contact() {
               </p>
               
               {/* Social Media Icons */}
-              <div className="mt-6 pt-6 border-t-2 border-purple-200 dark:border-purple-800">
+              <div className="mt-6 pt-6 border-t border-black/10 dark:border-white/10">
                 <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4 text-left">
                   Let&apos;s Connect
                 </p>
@@ -276,7 +269,7 @@ export default function Contact() {
                         aria-label={social.name}
                         whileHover={{ scale: 1.15, y: -3 }}
                         whileTap={{ scale: 0.9 }}
-                        className="group relative w-10 h-10 sm:w-11 sm:h-11 rounded-full shadow-md hover:shadow-xl flex items-center justify-center transition-all duration-300 flex-shrink-0"
+                        className="group relative w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0"
                         style={{
                           backgroundColor: social.color,
                         }}
@@ -300,6 +293,7 @@ export default function Contact() {
 
           {/* Contact Form */}
           <motion.div
+            className="h-full flex flex-col"
             variants={slideInRight}
             initial="hidden"
             whileInView="visible"
@@ -345,7 +339,7 @@ export default function Contact() {
                 </div>
               </motion.div>
             )}
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="flex-1 flex flex-col justify-between space-y-6">
               <div>
                 <label
                   htmlFor="fullName"
@@ -359,8 +353,8 @@ export default function Contact() {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-white dark:bg-slate-800 border ${errors.fullName ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
-                    } rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all`}
+                  className={`w-full px-4 py-3 bg-transparent border ${errors.fullName ? 'border-red-500' : 'border-black/15 dark:border-white/15'
+                    } rounded-md focus:ring-1 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all`}
                   placeholder="Your FullName"
                 />
                 {errors.fullName && (
@@ -381,8 +375,8 @@ export default function Contact() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-white dark:bg-slate-800 border ${errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
-                    } rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all`}
+                  className={`w-full px-4 py-3 bg-transparent border ${errors.email ? 'border-red-500' : 'border-black/15 dark:border-white/15'
+                    } rounded-md focus:ring-1 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all`}
                   placeholder="your.email@example.com"
                 />
                 {errors.email && (
@@ -403,8 +397,8 @@ export default function Contact() {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-white dark:bg-slate-800 border ${errors.subject ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
-                    } rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all`}
+                  className={`w-full px-4 py-3 bg-transparent border ${errors.subject ? 'border-red-500' : 'border-black/15 dark:border-white/15'
+                    } rounded-md focus:ring-1 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all`}
                   placeholder="How can I help you?"
                 />
                 {errors.subject && (
@@ -425,8 +419,8 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  className={`w-full px-4 py-3 bg-white dark:bg-slate-800 border ${errors.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
-                    } rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all resize-none`}
+                  className={`w-full px-4 py-3 bg-transparent border ${errors.message ? 'border-red-500' : 'border-black/15 dark:border-white/15'
+                    } rounded-md focus:ring-1 focus:ring-black dark:focus:ring-white focus:border-transparent outline-none transition-all resize-none`}
                   placeholder="Tell me about your project or inquiry..."
                 />
                 {errors.message && (
@@ -434,10 +428,12 @@ export default function Contact() {
                 )}
               </div>
 
-              <button
+              <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                className="w-full px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-md font-medium hover:opacity-85 transition-opacity duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <>
@@ -450,7 +446,7 @@ export default function Contact() {
                     Send Message
                   </>
                 )}
-              </button>
+              </motion.button>
             </form>
           </motion.div>
         </div>

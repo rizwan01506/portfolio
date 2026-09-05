@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { FaSun, FaMoon, FaHome, FaUser, FaCode, FaBriefcase, FaFolderOpen, FaEnvelope } from 'react-icons/fa';
 import { useTheme } from './ThemeProvider';
 
@@ -42,49 +42,49 @@ export default function BottomNavigation() {
   }, []);
 
   return (
-    <nav className="fixed bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-fit px-2">
-      <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-2 py-2 sm:py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-full shadow-2xl border border-gray-200 dark:border-gray-700 overflow-x-auto scrollbar-hide">
-        {navLinks.map((link) => {
-          const Icon = link.icon;
-          const isActive = activeSection === link.href.substring(1);
-          
-          return (
-            <a
-              key={link.name}
-              href={link.href}
-              className={`relative flex items-center justify-center w-10 h-10 sm:w-10 sm:h-10 rounded-full transition-all duration-300 flex-shrink-0 ${
-                isActive
-                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white scale-110'
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-purple-600 dark:hover:text-purple-400'
-              }`}
-              aria-label={link.name}
-              title={link.name}
-            >
-              <Icon className="w-4 h-4" />
-              {isActive && (
-                <span className="absolute -top-1 -right-1 w-2 h-2 bg-pink-400 rounded-full animate-pulse"></span>
-              )}
-            </a>
-          );
-        })}
-        
-        {/* Divider */}
-        <div className="w-px h-6 sm:h-8 bg-gray-300 dark:bg-gray-700 mx-0.5 sm:mx-1 flex-shrink-0"></div>
-        
-        {/* Theme Toggle */}
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-black/10 dark:border-white/10 bg-[#f7f6f2]/95 dark:bg-[#14161a]/95 backdrop-blur-sm">
+      <div className="max-w-3xl mx-auto flex items-center justify-center sm:justify-between gap-3 sm:gap-1 px-1 sm:px-6 py-1 overflow-x-auto scrollbar-hide">
+        <div className="flex items-center gap-0.5 sm:gap-6 flex-nowrap">
+          {navLinks.map((link) => {
+            const Icon = link.icon;
+            const isActive = activeSection === link.href.substring(1);
+
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`relative flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 px-1.5 py-1.5 text-xs sm:text-sm flex-shrink-0 transition-colors ${isActive
+                    ? 'font-semibold text-black dark:text-white'
+                    : 'text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white'
+                  }`}
+                aria-label={link.name}
+              >
+                <Icon className="w-4 h-4" />
+                <span className="hidden sm:inline">{link.name}</span>
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute left-2 right-2 sm:left-0 sm:right-0 -bottom-0.5 h-0.5 bg-black dark:bg-white"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+              </a>
+            );
+          })}
+        </div>
+
         <button
           onClick={toggleTheme}
-          className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 flex-shrink-0"
+          className="flex items-center justify-center min-w-[44px] min-h-[44px] flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
           aria-label="Toggle theme"
         >
           {theme === 'dark' ? (
-            <FaSun className="text-yellow-400 w-4 h-4 sm:w-5 sm:h-5" />
+            <FaSun className="w-4 h-4" />
           ) : (
-            <FaMoon className="text-gray-700 w-4 h-4 sm:w-5 sm:h-5" />
+            <FaMoon className="w-4 h-4" />
           )}
         </button>
       </div>
     </nav>
   );
 }
-

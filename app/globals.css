@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 26, 26, 24;
+  --background-rgb: 247, 246, 242;
+  --dot-rgb: 0, 0, 0;
 }
 
 .dark {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 15, 23, 42;
-  --background-end-rgb: 15, 23, 42;
+  --foreground-rgb: 240, 240, 236;
+  --background-rgb: 20, 22, 21;
+  --dot-rgb: 255, 255, 255;
 }
 
 * {
@@ -29,9 +29,9 @@ html {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  background-color: rgb(var(--background-rgb));
+  background-image: radial-gradient(rgba(var(--dot-rgb), 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
   overflow-x: hidden;
   width: 100%;
   max-width: 100%;
@@ -64,19 +64,13 @@ body {
   background: #666;
 }
 
-/* Gradient text */
+/* Section heading treatment - plain ink color, serif weight carried via font-serif class */
 .gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #1a1a18;
 }
 
 .dark .gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #f0f0ec;
 }
 
 /* Vertical float animation for decorative icons */
@@ -158,23 +152,23 @@ body {
   animation: pulse-slow 2.4s ease-in-out infinite;
 }
 
-/* A stronger highlighted card border using gradient + inner background */
+/* A stronger highlighted card border, single accent color */
 .highlight-border {
-  background: linear-gradient(90deg, rgba(102, 126, 234, 1) 0%, rgba(180, 74, 187, 1) 50%, rgba(255, 123, 140, 1) 100%);
+  background: #4a7c66;
   padding: 1px;
   /* thinner border */
   border-radius: 10px;
-  box-shadow: 0 6px 20px rgba(2, 6, 23, 0.28);
+  box-shadow: 0 6px 20px rgba(2, 6, 23, 0.08);
 }
 
 .highlight-inner {
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(247, 246, 242, 0.98);
   border-radius: 9px;
   padding: 14px 16px;
 }
 
 .dark .highlight-inner {
-  background: #061026;
+  background: #14161a;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -193,12 +187,12 @@ body {
 
 .social-card:hover {
   transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 18px 40px rgba(99, 102, 241, 0.12), 0 6px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 18px 40px rgba(74, 124, 102, 0.14), 0 6px 12px rgba(0, 0, 0, 0.06);
 }
 
 .social-card:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12), 0 12px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 0 4px rgba(74, 124, 102, 0.14), 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
 .social-icon-large {
@@ -346,11 +340,11 @@ body {
 .arch-frame {
   border-radius: 50% 50% 24px 24px / 100% 100% 24px 24px;
   overflow: hidden;
-  background: white;
+  background: #f7f6f2;
 }
 
 .dark .arch-frame {
-  background: #0f172a;
+  background: #14161a;
 }
 
 @media (prefers-reduced-motion: reduce) {

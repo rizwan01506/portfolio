@@ -11,21 +11,21 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          200: "#bae6fd",
-          300: "#7dd3fc",
-          400: "#38bdf8",
-          500: "#0ea5e9",
-          600: "#0284c7",
-          700: "#0369a1",
-          800: "#075985",
-          900: "#0c4a6e",
+          50: "#f2f6f4",
+          100: "#e1ebe5",
+          200: "#c3d7cb",
+          300: "#9dbdab",
+          400: "#75a087",
+          500: "#4a7c66",
+          600: "#3a6352",
+          700: "#2f5043",
+          800: "#274037",
+          900: "#20342d",
         },
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "monospace"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",

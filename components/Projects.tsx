@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { projects } from '@/lib/data';
+import { projects, Project } from '@/lib/data';
 import { FaExternalLinkAlt, FaGooglePlay, FaAppStore } from 'react-icons/fa';
 
 export default function Projects() {
@@ -73,8 +73,8 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto">
+    <section id="projects" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           className="text-center mb-12"
           variants={fadeInUp}
@@ -82,36 +82,37 @@ export default function Projects() {
           whileInView="visible"
           viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 gradient-text">
             Projects
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full"></div>
+          <div className="w-20 h-px bg-black/20 dark:bg-white/20 mx-auto"></div>
           <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Real-world applications built with modern technologies, focusing on performance, scalability, and user experience
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project: any, index) => (
+        <div className="grid md:grid-cols-2 gap-8 items-stretch">
+          {projects.map((project: Project, index) => (
             <motion.div
               key={index}
-              className="group bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+              className="group h-full flex flex-col bg-transparent rounded-md border border-black/10 dark:border-white/10 hover:border-black/25 dark:hover:border-white/25 transition-colors duration-300 overflow-hidden"
               variants={index % 2 === 0 ? slideInLeft : slideInRight}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
               transition={{ delay: isMobile ? index * 0.05 : index * 0.1 }}
+              whileHover={{ y: -6 }}
             >
               {/* Project Header */}
-              <div className="p-6 bg-gradient-to-r from-purple-600 to-pink-600">
-                <h3 className="text-2xl font-bold text-white mb-2">
+              <div className="p-6 border-b border-black/10 dark:border-white/10">
+                <h3 className="font-serif text-2xl font-semibold mb-2">
                   {project.title}
                 </h3>
-                <p className="text-purple-100">{project.role}</p>
+                <p className="text-gray-600 dark:text-gray-400">{project.role}</p>
               </div>
 
               {/* Project Content */}
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-1">
                 <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                   {project.description}
                 </p>
@@ -122,10 +123,10 @@ export default function Projects() {
                     Technologies:
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {project.techStack.map((tech: any, idx: number) => (
+                    {project.techStack.map((tech: string, idx: number) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 text-sm rounded-full"
+                        className="px-3 py-1 border border-black/15 dark:border-white/15 text-gray-700 dark:text-gray-300 text-sm rounded-full"
                       >
                         {tech}
                       </span>
@@ -139,12 +140,12 @@ export default function Projects() {
                     Key Achievements:
                   </h4>
                   <ul className="space-y-2">
-                    {project.achievements.slice(0, 3).map((achievement: any, idx: number) => (
+                    {project.achievements.map((achievement: string, idx: number) => (
                       <li
                         key={idx}
                         className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300"
                       >
-                        <span className="text-purple-600 mt-1">•</span>
+                        <span className="text-gray-500 dark:text-gray-400 mt-1">•</span>
                         <span>{achievement}</span>
                       </li>
                     ))}
@@ -153,13 +154,13 @@ export default function Projects() {
 
                 {/* Links */}
                 {project.links && (
-                  <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <div className="flex flex-wrap gap-3 pt-4 mt-auto border-t border-black/10 dark:border-white/10">
                     {project.links.live && (
                       <a
                         href={project.links.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm"
+                        className="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors text-sm font-medium"
                       >
                         <FaExternalLinkAlt />
                         Live Demo
@@ -170,7 +171,8 @@ export default function Projects() {
                         href={project.links.android}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
+                        className="flex items-center gap-2 px-4 py-2 rounded-md text-white text-sm transition-opacity hover:opacity-90"
+                        style={{ backgroundColor: '#01875F' }}
                       >
                         <FaGooglePlay />
                         Play Store
@@ -181,7 +183,8 @@ export default function Projects() {
                         href={project.links.ios}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                        className="flex items-center gap-2 px-4 py-2 rounded-md text-white text-sm transition-opacity hover:opacity-90"
+                        style={{ backgroundColor: '#000000' }}
                       >
                         <FaAppStore />
                         App Store
@@ -203,14 +206,16 @@ export default function Projects() {
           viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
         >
           <p className="text-gray-600 dark:text-gray-400 mb-4">
-            These are just a few highlights. I've worked on many more projects across web and mobile platforms.
+            These are just a few highlights. I&apos;ve worked on many more projects across web and mobile platforms.
           </p>
-          <a
+          <motion.a
             href="#contact"
-            className="inline-block px-8 py-3 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-full font-semibold hover:bg-purple-600 hover:text-white dark:hover:text-white transition-all duration-300"
+            whileHover={{ scale: 1.03, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-block px-8 py-3 border border-black/20 dark:border-white/20 rounded-md font-medium hover:bg-black/5 dark:hover:bg-white/10 transition-colors duration-300"
           >
             Discuss Your Project
-          </a>
+          </motion.a>
         </motion.div>
       </div>
     </section>
